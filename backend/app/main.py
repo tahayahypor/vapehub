@@ -16,10 +16,11 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-    settings.frontend_url,
-    "https://vapehub-4gi8.vercel.app",
-    "http://localhost:5173",
-],
+        settings.frontend_url.rstrip("/"),
+        "https://vapehub-4gi8.vercel.app",
+        "http://localhost:5173",
+    ],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
