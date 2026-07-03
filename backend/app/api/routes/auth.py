@@ -37,8 +37,8 @@ def set_auth_cookie(
         value=token,
         max_age=settings.access_token_minutes * 60,
         httponly=True,
-        secure=settings.cookie_secure,
-        samesite="lax",
+        secure=True,
+        samesite="none",
         path="/",
     )
 
@@ -142,6 +142,8 @@ def logout(response: Response):
     response.delete_cookie(
         key=COOKIE_NAME,
         path="/",
+        secure=True,
+        samesite="none",
     )
 
     return {
